@@ -1,0 +1,75 @@
+@mixin sr-only {
+  padding:0;
+  clip:rect(1px, 1px, 1px, 1px);
+  clip-path:inset(50%);
+  overflow:hidden;
+  width: 1px;
+  height: 1px;
+}
+
+@mixin lineEllipsis($line-to-show, $font-size: 1em, $line-height: 1.6) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @if $line-to-show == 1 {
+    white-space: nowrap;
+  }
+  @else {
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-height: $font-size * $line-height * $line-to-show;
+    -webkit-line-clamp: $line-to-show;
+  }
+}
+
+@mixin font-face ($name, $path, $filename, $weight: 400, $exts: eot woff2 woff ttf svg) {
+  $extmods: (
+		eot: "?",
+		svg: "#" + str-replace($name, " ", "_")
+  );
+
+  $formats: (
+    eot: "embedded-opentype",
+    woff2: "woff2",
+    woff: "woff",
+    ttf: "truetype",
+    otf: "opentype",
+    svg: "svg"
+  );
+
+  $src: null;
+
+  @each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + $filename + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+		font-family: quote($name);
+		font-weight: $weight;
+		src: $src;
+	}
+}
+
+@mixin font-size ($size: 'base') {
+  font-size: map-deep-get($text, 'size', $size);
+}
+
+@mixin font-weight ($weight: 'regular') {
+  font-weight: map-deep-get($text, 'weight', $weight);
+}
+
+@mixin font($family, $size, $weight: null, $line-height: null, $variant: null, $style: null) {
+  $font: map-deep-get($text, 'size', $size) $family;
+
+  @if $line-height {
+    $font: #{map-deep-get($text, 'size', $size)}/#{$line-height} $family;
+  }
+
+  @if $weight {
+    $font: #{map-deep-get($text, 'weight', $weight)} #{$font};
+  }
+
+  font: $style $variant $font;
+}

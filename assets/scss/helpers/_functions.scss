@@ -1,0 +1,60 @@
+@function to-string($value: '') {
+  @return inspect($value);
+}
+
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace +
+			str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+	}
+
+	@return $string;
+}
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+@function map-has-keys($map, $keys...) {
+  @each $key in $keys {
+    @if map-has-key($map, $key) == false {
+      @return false;
+    }
+    $map: map-get($map, $key);
+  }
+  @return true;
+}
+
+
+@function getColor($Color, $Category: 'default', $Type: null, $ColorSet: $colorSet ) {
+  $result: #fff;
+  $Category: to-string($Category);
+
+  @if $Type == null {
+    @if map-has-keys($ColorSet, $Color, $Category) {
+      $result: map-deep-get($ColorSet, $Color, $Category);
+    }
+    @else {
+      @error " ⚠ no value could be retrieved from getColor('#{$Color}', '#{$Category}'). ";
+    }
+  }
+  @else {
+    $Type: to-string($Type);
+    @if map-has-keys($ColorSet, $Color, $Category, $Type) {
+      $result: map-deep-get($ColorSet, $Color, $Category, $Type);
+    }
+    @else {
+      @error " ⚠ no value could be retrieved from getColor('#{$Color}', '#{$Category}', '#{$Type}'). ";
+    }
+  }
+  @return $result;
+}

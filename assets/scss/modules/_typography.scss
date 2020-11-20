@@ -1,0 +1,17 @@
+@each $name, $config in $web-fonts {
+  $weights: ();
+  $files: map-get($config, 'files');
+  $exts: map-get($config, 'exts');
+
+  @each $weight, $file in $files {
+    $weight: map-deep-get($text, 'weight', $weight);
+    @include font-face($name, $web-font-path, $file, $weight, $exts);
+  }
+}
+
+html {
+  line-height: 1.6;
+  font-size: 100%;
+  text-size-adjust: 100%;
+  font-family: $noto;
+}
