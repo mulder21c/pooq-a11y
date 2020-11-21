@@ -1,28 +1,5 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">2020-iat</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+  <div class="container">페이지 콘텐츠</div>
 </template>
 
 <script>

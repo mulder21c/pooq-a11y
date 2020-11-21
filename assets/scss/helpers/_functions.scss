@@ -35,7 +35,7 @@
 }
 
 
-@function getColor($Color, $Category: 'default', $Type: null, $ColorSet: $colorSet ) {
+@function getColor($Color, $Category: 'default', $Type: null, $ColorSet: $color-set ) {
   $result: #fff;
   $Category: to-string($Category);
 

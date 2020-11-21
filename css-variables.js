@@ -17,24 +17,24 @@ const text = {
   },
 };
 const colorSet = {
-  grey: {
-    primary: {
-      default: '#a553ff',
-      deep: '#8135c9',
-    },
-    grey: {
-      default: '#ddd',
-      light: '#fefefe',
-      dark: '0a0a0a',
-    },
-    white: {
-      default: '#fff',
-    },
-    black: {
-      default: '#000',
-    },
+  primary: {
+    default: '#a553ff',
+    deep: '#8135c9',
   },
-}
+  grey: {
+    default: '#ddd',
+    lighten: '#fefefe',
+    light: '#e6e6e6',
+    dark: '#0a0a0a',
+    darken: '#272727',
+  },
+  white: {
+    default: '#fff',
+  },
+  black: {
+    default: '#000',
+  },
+};
 const webFontPath = "'/fonts/'";
 const webFonts = {
   NotoSansKR: {
@@ -55,4 +55,5 @@ module.exports = {
   webFontPath,
   webFonts,
   noto,
+  colorSet,
 };

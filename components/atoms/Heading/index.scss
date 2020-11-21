@@ -1,0 +1,6 @@
+.heading {
+  &.--is-hidden {
+    position: absolute;
+    @include sr-only;
+  }
+}

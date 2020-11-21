@@ -1,0 +1,54 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Heading from './index.vue';
+
+<Meta
+  title="Atoms/Heading"
+  component={Heading}
+  argTypes={{
+    rank: {
+      description: '헤딩 레벨, 이 값이 `<h1>` ~ `<h6>` 까지의 헤딩을 만듭니다.',
+      control: {
+        type: `select`,
+        options: [1, 2, 3, 4, 5, 6],
+      },
+    },
+    html: {
+      description: '헤딩 콘텐츠로 HTML 코드를 사용하고 싶을 경우 이 프로퍼티를 사용하세요. <br> `slot`이 없다면 이 값이 우선 되고 `textContent`는 무시됩니다.',
+    },
+    textContent: {
+      description: '헤딩 콘텐츠로 단순 텍스트를 사용할 경우, 이 프로퍼티를 사용하세요.',
+    },
+    isHidden: {
+      description: '헤딩의 <b>가시적</b> 노출 여부를 결정합니다.'
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  slots: {},
+  components: {Heading},
+  template: `
+    <Heading
+      :rank="rank"
+      :html="html"
+      :textContent="textContent"
+      :is-hidden="isHidden"
+    />
+  `,
+});
+
+<Canvas>
+  <Story
+    name="Heading"
+    args = {{
+      rank: 1,
+      textContent: `헤딩 텍스트`,
+      isHidden: false,
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Heading" />

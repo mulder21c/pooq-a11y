@@ -1,0 +1,97 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import Link from './index.vue';
+
+<Meta
+  title="Atoms/Link"
+  component={Link}
+  argTypes={{
+    to: {
+      description: '링크의 대상 경로, 이 값을 사용하면 `<nxut-link>`로 렌더링 되며, `href` 및 `href`와 관련된 프로퍼티는 무시됩니다.',
+    },
+    href: {
+      description: '링크의 대상 경로, 이 값을 사용하면 `<a>`로 렌더링 됩니다.',
+    },
+    target: {
+      description: '`href` 사용 시 `target` 어트리뷰트로 사용할 값을 정의할 수 있습니다.'
+    },
+    content: {
+      description: '링크 콘텐츠, plain string, html string 모두 사용 가능합니다.'
+    }
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {Link},
+  template: `
+    <Link
+      :to="to"
+      :href="href"
+      :target="target"
+      :content="content"
+      @click.native.prevent="log"
+    />
+  `,
+  methods: {
+    log() {
+      if (this.to) {
+        action(`nuxt-link clicked`)(`to: ${this.to}`);
+      } else {
+        action(`anchor clicked`)(`href: ${this.href} ${this.target ? `, target: ${this.target}` : '' }`);
+      }
+    }
+  }
+});
+
+## Link as `nuxt-link`
+
+<Canvas>
+  <Story
+    name="NuxtLink"
+    args = {{
+      to: `/`,
+      content: "Nuxt 링크"
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="NuxtLink" />
+
+
+## Link as `a` element in native HTML
+
+### without `target`
+
+<Canvas>
+  <Story
+    name="Native Anchor"
+    args = {{
+      href: `/`,
+      content: "a 링크"
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Native Anchor" />
+
+### with `target`
+
+<Canvas>
+  <Story
+    name="Native Anchor with target"
+    args = {{
+      href: `/`,
+      target: `_blank`,
+      content: "a 링크"
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Native Anchor with target" />

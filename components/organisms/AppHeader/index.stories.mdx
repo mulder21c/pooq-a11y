@@ -1,0 +1,55 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import AppHeader from './index.vue';
+
+<Meta
+  title="Oraganisms/AppHeader"
+  component={AppHeader}
+  argTypes={{
+    navigations: {
+      description: '메인 내비게이션 정보 객체',
+      control: {
+        type: `object`
+      }
+    },
+    subNavigations: {
+      description: '유틸 내비게이션 정보 객체',
+      control: {
+        type: `object`
+      }
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {AppHeader},
+  template: `
+    <AppHeader :navigations="navigations" :subNavigations="subNavigations" />
+  `,
+  methods: {}
+});
+
+## Application Header
+
+<Canvas>
+  <Story
+    name="AppHeader"
+    args={{
+      navigations: [
+        { "content": "방송VOD", "to": "#" },
+        { "content": "실시간TV", "to": "#" },
+        { "content": "영화", "to": "#" },
+        { "content": "무료", "to": "#" },
+      ],
+      subNavigations: [
+        { "content": "로그인", "to": "#"},
+        { "content": "마이푹", "to": "#"},
+        { "content": "이용권 구매", "to": "#"},
+      ],
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="AppHeader" />

@@ -1,0 +1,159 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Navigation from './index.vue';
+import Link from '@atoms/Link';
+import Heading from '@atoms/Heading';
+import { action } from '@storybook/addon-actions';
+
+<Meta
+  title="Molecules/Navigation"
+  component={Navigation}
+  subcomponent={Link}
+  argTypes={{
+    paths: {
+      description: '내비게이션 항목 정보 세트',
+      control: {
+        type: `object`
+      }
+    },
+    flow: {
+      description: '내비게이션 항목 정렬 기준',
+      control: {
+        type: `select`,
+        options: [`row`, `column`],
+      }
+    },
+    context: {
+      control: {
+        type: `select`,
+        options: [`primary`, `sub`, `footer`],
+      }
+    },
+    itemClassName: {
+      description: '내비게이션 항목에 사용 할 class name',
+    },
+    headingId: {
+      description: '내비게이션 헤딩에 지정할 id',
+    },
+    headingRank: {
+      description: '내비게이션 헤딩 레벨, `1`~`6`',
+    },
+    headingContent: {
+      description: '내비게이션 헤딩 콘텐츠, plain text·html string 모두 허용'
+    },
+    hideHeading: {
+      description: '내비게이션 헤딩 가시적 노출 여부'
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {Navigation},
+  subcomponent:{Link},
+  template: `
+    <Navigation
+      :paths="paths"
+      :flow="flow"
+      :context="context"
+      :item-class-name="itemClassName"
+      :heading-id="headingId"
+      :headingRank="headingRank"
+      :headingContent="headingContent"
+      :hideHeading="hideHeading"
+      @click.native.prevent="log"
+    />
+  `,
+  methods: {
+    log(event) {
+      action(`navigation item clicked`)(event.target.textContent);
+    }
+  }
+});
+
+## Main Navigation
+
+<Canvas>
+  <Story
+    name="Main Navigation"
+    parameters={{
+      backgrounds: {
+        default: 'header',
+      }
+    }}
+    args={{
+      paths: [
+        { "content": "방송VOD", "to": "#" },
+        { "content": "실시간TV", "to": "#" },
+        { "content": "영화", "to": "#" },
+        { "content": "무료", "to": "#" },
+      ],
+      flow: `row`,
+      context: `primary`,
+      headingRank: 2,
+      headingContent: '메인',
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Main Navigation" />
+
+## Sub Navigation
+
+<Canvas>
+  <Story
+    name="Sub Navigation"
+    parameters={{
+      backgrounds: {
+        default: 'header',
+      }
+    }}
+    args={{
+      paths: [
+        { "content": "로그인", "to": "#"},
+        { "content": "마이푹", "to": "#"},
+        { "content": "이용권 구매", "to": "#"},
+      ],
+      flow: `row`,
+      context: `sub`,
+      headingRank: 2,
+      headingContent: '유틸',
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Sub Navigation" />
+
+
+## Footer Navigation
+
+<Canvas>
+  <Story
+    name="Footer Navigation"
+    parameters={{
+      backgrounds: {
+        default: 'footer',
+      }
+    }}
+    args={{
+      paths: [
+        { "content": "회사 소개", "to": "#"},
+        { "content": "서비스 소개", "to": "#"},
+        { "content": "이용 약관", "to": "#"},
+        { "content": "개인정보취급방침", "to": "#"},
+        { "content": "고객센터", "to": "#"},
+      ],
+      flow: `row`,
+      context: `footer`,
+      headingRank: 2,
+      headingContent: '이용 정보',
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Footer Navigation" />

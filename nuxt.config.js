@@ -51,6 +51,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -91,6 +92,7 @@ export default {
 
       alias[`@assets`] = path.join(rootPath, './assets');
       alias[`~assets`] = path.join(rootPath, './assets');
+      alias[`@images`] = path.join(rootPath, './assets/images');
       alias[`@atoms`] = path.join(rootPath, './components/atoms');
       alias[`@molecules`] = path.join(rootPath, './components/molecules');
       alias[`@organisms`] = path.join(rootPath, './components/organisms');
