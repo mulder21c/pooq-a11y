@@ -88,4 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
 yarn.lock
+.nuxt-storybook/

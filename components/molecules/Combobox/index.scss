@@ -1,0 +1,59 @@
+.combobox {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid getColor('black');
+  background-color: getColor('white');
+
+  &__label {
+    @include sr-only;
+    display: block;
+  }
+  &__txtfield {
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    border-radius: 5px;
+    border: 0;
+    padding: 0 .5em;
+    height: 40px;
+    width: calc(100% - 30px);
+  }
+  &__btn {
+    &--search {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  &__list {
+    overflow: hidden;
+    box-sizing: border-box;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    border-radius: 0 0 5px 5px;
+    width: 100%;
+    background-color: getColor('white');
+    box-shadow: -5px 10px 10px 0 rgba(getColor('grey', 'dark'), 0.25),
+      10px 10px 10px 0 rgba(getColor('grey', 'dark'), 0.25);
+
+    &__item {
+      padding: 8px 10px;
+      @include font($noto, 'small', 'light');
+      @include lineEllipsis(1);
+
+      &--selected,
+      &:hover {
+        background-color: getColor('primary', 'deep');
+        color: getColor('white');
+        @include font-weight('regular');
+      }
+    }
+  }
+  &__status {
+    position: absolute;
+    @include sr-only;
+  }
+}

@@ -1,0 +1,54 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Combobox from './index.vue';
+
+<Meta
+  title="Molecules/Combobox"
+  component={Combobox}
+  argTypes={{
+    useAutocomplete: {
+      description: '브라우저 자동완성 기능 설정, 사용하지 않는 것을 권장함',
+    },
+    useSpellCheck: {
+      description: '브라우저 맞춤법 검사 기능 설정, 사용하지 않는 것을 권장함',
+    },
+    label: {
+      description: '`label` 엘리먼트의 텍스트 콘텐트',
+    },
+    placeholder: {
+      description: '`input:text`에 적용 될 `placeholder` 어트리뷰트 값',
+    }
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {Combobox},
+  template: `
+    <Combobox
+      :use-autocomplete="useAutocomplete"
+      :use-spell-check="useSpellCheck"
+      :label="label"
+      :placeholder="placeholder"
+    />
+  `,
+  methods: {
+  }
+});
+
+## Combobox
+
+<Canvas>
+  <Story
+    name="Combobox"
+    args={{
+      useAutocomplete: false,
+      useSpellCheck: false,
+      label: `프로그램 검색`,
+      placeholder: `검색어`,
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Combobox" />
