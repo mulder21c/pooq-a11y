@@ -4,9 +4,9 @@
     :aria-labelledby="navHeadingId"
     :class="$style[`nav`]"
   >
-    <slot v-if="hasHeadingSlot" :id="navHeadingId" name="nav-heading" />
+    <slot :id="navHeadingId" name="nav-heading" />
     <Heading
-      v-else
+      v-if="!hasHeadingSlot"
       :id="navHeadingId"
       :rank="headingRank"
       :html="headingContent"
@@ -89,7 +89,7 @@ export default {
   },
   computed: {
     hasHeadingSlot() {
-      return this.$slots[`nav-heading`];
+      return !!this.$slots[`nav-heading`] || !!this.$scopedSlots[`nav-heading`];
     },
     navHeadingId() {
       return `${this.headingId}-${this._uid}`;

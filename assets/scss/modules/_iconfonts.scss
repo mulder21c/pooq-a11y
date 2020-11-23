@@ -1,0 +1,47 @@
+@mixin import-iconfonts() {
+  @font-face {
+  	font-family: "iconfont";
+	  src: url("/iconfonts/iconfont.eot?70e6b13b186a11bd179f7d905c67fec5?#iefix") format("embedded-opentype"),
+url("/iconfonts/iconfont.woff2?70e6b13b186a11bd179f7d905c67fec5") format("woff2"),
+url("/iconfonts/iconfont.woff?70e6b13b186a11bd179f7d905c67fec5") format("woff");
+  }
+}
+
+@if not variable-exists('icon-fonts') {
+	$icon-fonts: () !global;
+}
+
+$icon-fonts: map-merge($icon-fonts, (
+		'chevron-left': ('iconfont' 'f101'),
+		'chevron-right': ('iconfont' 'f102'),
+		'search': ('iconfont' 'f103'),
+));
+
+@mixin iconfont($name, $position: 'prefix') {
+	$icon: map-get($icon-fonts, $name);
+  display: inline-flex;
+  align-items: center;
+  @if $position == 'prefix' {
+    &::before {
+      font-family: nth($icon, 1) !important;
+      font-style: normal;
+      font-weight: normal !important;
+      vertical-align: middle;
+      content: #{'"\\' + nth($icon, 2) + '"'};
+    }
+  }
+  @else if $position == 'suffix' {
+    &::after {
+      font-family: nth($icon, 1) !important;
+      font-style: normal;
+      font-weight: normal !important;
+      vertical-align: middle;
+      content: #{'"\\' + nth($icon, 2) + '"'};
+    }
+  }
+}
+
+@mixin iconfont-unicode($name) {
+  $icon: map-get($icon-fonts, $name);
+  content: #{'"\\' + nth($icon, 2) + '"'};
+}

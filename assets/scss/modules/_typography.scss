@@ -8,6 +8,7 @@
     @include font-face($name, $web-font-path, $file, $weight, $exts);
   }
 }
+@include import-iconfonts();
 
 html {
   line-height: 1.6;

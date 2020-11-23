@@ -5,7 +5,7 @@ const text = {
     base: '16px',
     large: '18px',
     xlarge: '20px',
-    xzlarge: '40px',
+    xxlarge: '40px',
     big: '100px',
   },
   weight: {
@@ -19,6 +19,7 @@ const text = {
 const colorSet = {
   primary: {
     default: '#a553ff',
+    light: '#af67ff',
     deep: '#8135c9',
   },
   grey: {

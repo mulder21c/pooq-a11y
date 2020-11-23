@@ -1,0 +1,35 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import TextBox from './index.vue';
+import fontList from '@/assets/svgIcons/fonts.json';
+
+<Meta
+  title="Utils/IconFonts"
+  component={TextBox}
+  argTypes={{
+    fontName: {
+      control: {
+        type: 'select',
+        options: fontList,
+      }
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {TextBox},
+  template: `
+    <TextBox :font-name="fontName" />
+  `,
+});
+
+<Canvas>
+  <Story
+    name="IconFonts"
+    args = {{
+      fontName: fontList[0]
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>

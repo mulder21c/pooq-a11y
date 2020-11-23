@@ -1,0 +1,45 @@
+@mixin import-iconfonts() {
+  @font-face {
+  	font-family: "{{fontName}}";
+	  src: {{{src}}};
+  }
+}
+
+@if not variable-exists('icon-fonts') {
+	$icon-fonts: () !global;
+}
+
+$icon-fonts: map-merge($icon-fonts, (
+	{{#each codepoints}}
+		'{{@key}}': ('{{../fontName}}' '{{this}}'),
+	{{/each}}
+));
+
+@mixin iconfont($name, $position: 'prefix') {
+	$icon: map-get($icon-fonts, $name);
+  display: inline-flex;
+  align-items: center;
+  @if $position == 'prefix' {
+    &::before {
+      font-family: nth($icon, 1) !important;
+      font-style: normal;
+      font-weight: normal !important;
+      vertical-align: middle;
+      content: #{'"\\' + nth($icon, 2) + '"'};
+    }
+  }
+  @else if $position == 'suffix' {
+    &::after {
+      font-family: nth($icon, 1) !important;
+      font-style: normal;
+      font-weight: normal !important;
+      vertical-align: middle;
+      content: #{'"\\' + nth($icon, 2) + '"'};
+    }
+  }
+}
+
+@mixin iconfont-unicode($name) {
+  $icon: map-get($icon-fonts, $name);
+  content: #{'"\\' + nth($icon, 2) + '"'};
+}

@@ -1,0 +1,30 @@
+.palette {
+  @include font($noto, 'base', 'exbold');
+  @include flat-map-prop($color-set, 'color');
+  @include flat-map-prop($color-set, 'background-color', '.rect-angle');
+  color: getColor('grey', 'darken');
+}
+.rect-angles {
+  margin-top: 2em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.rect-angle {
+  background-color: getColor('black');
+  margin: 10px;
+
+  &--small {
+    width: 50px;
+    height: 50px;
+  }
+  &--medium {
+    width: 100px;
+    height: 100px;
+  }
+  &--large {
+    width: 200px;
+    height: 200px;
+  }
+}

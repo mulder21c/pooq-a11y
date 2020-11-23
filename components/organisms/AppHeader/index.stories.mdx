@@ -47,6 +47,9 @@ export const Template = (args, { argTypes }) => ({
         { "content": "이용권 구매", "to": "#"},
       ],
     }}
+    decorators={[
+      () => ({ template: `<div style="width: 1200px"><story /></div>` })
+    ]}
   >
     { Template.bind({}) }
   </Story>

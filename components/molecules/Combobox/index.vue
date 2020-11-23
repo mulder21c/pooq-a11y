@@ -33,17 +33,14 @@
       @keydown.space.prevent="handleSpace"
       @keydown.esc="handleEsc"
     />
-    <button
+    <IconButton
       type="submit"
+      :size="`small`"
+      :appearance="`none`"
+      :icon="`search`"
+      :label="`검색`"
       :class="$style[`combobox__btn--search`]"
-      :aria-labelledby="`btn-search--${_uid}`"
-    >
-      <font-awesome-icon
-        :id="`btn-search--${_uid}`"
-        :aria-label="`검색`"
-        :icon="['fas', 'search']"
-      />
-    </button>
+    />
     <div
       ref="status"
       role="status"
@@ -79,8 +76,12 @@
 
 <script>
 import debounce from 'lodash/debounce';
+import IconButton from '@atoms/Button/IconButton';
 
 export default {
+  components: {
+    IconButton,
+  },
   props: {
     useAutocomplete: {
       type: Boolean,

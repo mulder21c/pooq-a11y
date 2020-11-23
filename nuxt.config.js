@@ -114,6 +114,7 @@ export default {
   },
   styleResources: {
     scss: [
+      '@/assets/scss/modules/_iconfonts.scss',
       '@/assets/scss/modules/_variables.scss',
       '@/assets/scss/helpers/_functions.scss',
       '@/assets/scss/helpers/_mixins.scss',

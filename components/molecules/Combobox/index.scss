@@ -1,4 +1,5 @@
 .combobox {
+  box-sizing: border-box;
   position: relative;
   display: flex;
   flex-flow: row;
@@ -23,6 +24,7 @@
   }
   &__btn {
     &--search {
+      margin: 0 .25em;
       width: 30px;
       height: 30px;
     }

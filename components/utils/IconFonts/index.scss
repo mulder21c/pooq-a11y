@@ -1,0 +1,34 @@
+$icons: map-keys($icon-fonts);
+
+@each $icon in $icons {
+  .icon-#{$icon} {
+    margin: 0 20px;
+    @include iconfont($icon);
+  }
+}
+
+.size {
+  &-1x {
+    font-size: 1em;
+  }
+
+  &-2x {
+    font-size: 2em;
+  }
+
+  &-3x {
+    font-size: 4em;
+  }
+
+  &-4x {
+    font-size: 6em;
+  }
+
+  &-5x {
+    font-size: 8em;
+  }
+
+  &-6x {
+    font-size: 10em;
+  }
+}

@@ -1,0 +1,120 @@
+$icons: map-keys($icon-fonts);
+
+.btn {
+  $host: &;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  height: 2em;
+  transition: all .3s;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  // sizes
+  &--small {
+    font-size: 1.5em;
+  }
+  &--normal {
+    font-size: 2.5em;
+
+    &--half {
+      &-horizonal {
+        font-size: 2.5em;
+        height: 1em;
+      }
+      &-vertical {
+        font-size: 2.5em;
+        width: 1em;
+      }
+    }
+  }
+  &--large {
+    font-size: 4em;
+
+    &--half {
+      &-horizonal {
+        font-size: 4em;
+        height: 1em;
+      }
+      &-vertical {
+        font-size: 4em;
+        width: 1em;
+      }
+    }
+  }
+
+  // appearances
+  &--none {
+    &:hover,
+    &:focus {
+      color: getColor('grey', 'darken');
+      filter: drop-shadow(1px 1px .045em rgba(getColor('grey', 'dark'), .75));
+    }
+  }
+  &--outline {
+    background-color: transparent;
+    border: 1px solid getColor('grey', 'dark');
+    color: getColor('grey', 'dark');
+
+    &:hover,
+    &:focus {
+      outline: 0;
+      border-color: getColor('grey', 'darken');
+      color: getColor('grey', 'darken');
+      box-shadow: 1px 1px .025em .085em rgba(getColor('grey', 'dark'), .3);
+    }
+  }
+  &--primary {
+    background-color: getColor('primary', 'light');
+    color: getColor('white');
+
+    &:hover,
+    &:focus {
+      outline: 0;
+      background-color: getColor('primary', 'deep');
+      filter: drop-shadow(2px 2px .11em rgba(getColor('primary'), .7))
+        drop-shadow(2px 2px .16em rgba(getColor('grey', 'dark'), .5));
+    }
+
+    &-outline {
+      outline: 0;
+      background-color: transparent;
+      border: 1px solid getColor('primary');
+      color: getColor('primary');
+
+      &:hover,
+      &:focus {
+        border-color: getColor('primary', 'deep');
+        color: getColor('primary', 'deep');
+        box-shadow: 1px 1px .16em .11em rgba(getColor('primary', 'deep'), .2);
+      }
+    }
+  }
+
+  // shape
+  &--circled {
+    border-radius: 50%;
+  }
+  &--round-edge {
+    border-radius: 0.25em;
+  }
+
+
+  &--icon {
+    font-size: inherit;
+    line-height: 1;
+  }
+
+  @each $icon in $icons {
+    &--icon--#{$icon} {
+      @include iconfont($icon);
+    }
+  }
+}

@@ -3,6 +3,7 @@ import Navigation from './index.vue';
 import Link from '@atoms/Link';
 import Heading from '@atoms/Heading';
 import { action } from '@storybook/addon-actions';
+const { colorSet } = require('@/css-variables.js');
 
 <Meta
   title="Molecules/Navigation"
@@ -78,8 +79,11 @@ export const Template = (args, { argTypes }) => ({
     parameters={{
       backgrounds: {
         default: 'header',
-      }
+      },
     }}
+    decorators={[
+      () => ({ template: `<div style="background-color: ${colorSet.grey.darken}; padding: 2em"><story /></div>` })
+    ]}
     args={{
       paths: [
         { "content": "방송VOD", "to": "#" },
@@ -109,6 +113,9 @@ export const Template = (args, { argTypes }) => ({
         default: 'header',
       }
     }}
+    decorators={[
+      () => ({ template: `<div style="background-color: ${colorSet.grey.darken}; padding: 2em"><story /></div>` })
+    ]}
     args={{
       paths: [
         { "content": "로그인", "to": "#"},
@@ -138,6 +145,9 @@ export const Template = (args, { argTypes }) => ({
         default: 'footer',
       }
     }}
+    decorators={[
+      () => ({ template: `<div style="background-color: ${colorSet.grey.light}; padding: 2em"><story /></div>` })
+    ]}
     args={{
       paths: [
         { "content": "회사 소개", "to": "#"},

@@ -15,7 +15,7 @@
       :item-class-name="$style[`header__main-nav__item`]"
     >
       <template v-slot:[`nav-heading`]="props">
-        <heading
+        <Heading
           :id="props.id"
           :rank="2"
           :is-hidden="true"
@@ -29,7 +29,12 @@
       :class="$style[`header__search__wrap`]"
       @submit.prevent="handleSearch"
     >
-      콤보박스
+      <Combobox
+        :autocomplete="false"
+        :use-spell-check="false"
+        :label="`프로그램 검색`"
+        :placeholder="`검색어`"
+      />
     </form>
     <navi
       :class="$style[`header__util-nav`]"
@@ -55,12 +60,14 @@
 <script>
 import Heading from '@atoms/Heading';
 import Logo from '@atoms/Logo';
+import Combobox from '@molecules/Combobox';
 import Navi from '@molecules/Navigation';
 
 export default {
   components: {
     Heading,
     Logo,
+    Combobox,
     Navi,
   },
   props: {
