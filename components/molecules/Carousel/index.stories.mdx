@@ -1,0 +1,151 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Slider from './Slider.vue';
+import SliderItem from './SliderItem.vue';
+const slideList = [1, 2, 3, 4, 5];
+
+<Meta
+  title="Molecules/Carousel"
+  component={Slider}
+  subcomponent={SliderItem}
+  argTypes={{    
+    list: {
+      description: `인디케이터 생성용 목록`,
+      control: {
+        type: `object`,
+      },
+    },
+    animation: {
+      description: `슬라이드 전환 효과`,
+      control: {
+        type: `select`,
+        options: [`fade`, `normal`],
+      },
+    },
+    autoPlay: {
+      description: `자동 넘김 기능 사용 여부`,
+    },
+    speed: {
+      description: `슬라이드 전환 속도`,
+    },
+    interval: {
+      description: `autoplay 인터벌`,
+    },
+    useControlBtn: {
+      description: `컨트롤 버튼 — 이전/다음 슬라이드 버튼 사용 여부`,
+    },
+    useIndicator: {
+      description: `인디케이터 사용 여부`,
+    },
+    useStatus: {
+      description: `슬라이드 상태 사용 여부, for a11y`,
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {Slider},
+  subcomponent: {SliderItem},
+  template: `
+    <slider
+      :list="list"
+      :animation="animation"
+      :auto-play="autoPlay"
+      :speed="speed"
+      :interval="interval"
+      :use-control-btn="useControlBtn"
+      :use-indicator="useIndicator"
+      :use-status="useStatus"
+      :btn-class-prev="btnClassPrev"
+      :btn-class-next="btnClassNext"
+    >
+      <slider-item 
+        v-for="i in list" 
+        :key="'slides-' + i"
+        :style="{
+          backgroundColor: ['red', 'green', 'yellow', 'blue', 'gray'][i - 1],
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }"
+      >
+        {{ i }}
+      </slider-item>
+    </slider>
+  `,
+  methods: {}
+});
+
+## Carousel
+
+- controls은 내부에 초점이 있을 경우, 또는 마우스 hover시에만 노출 됨
+- indicator 조작은 방향키로
+- 스토리용 슬라이드 색상 바꾸자... 눈 아프다...
+
+> - indicator, controls을 별도 하위 컴포넌트로 분리 시키는게 낫지 않을까 고민해볼 것
+
+## auto play
+
+| 초기 1 cycle이 돌 때 speed 설정 값보다 빠르게 진행되는 이유는...?
+
+<Canvas>
+  <Story
+    name="Carousel autoplay"
+    args={{
+      list: slideList,
+      autoPlay: true,
+      speed: 700,
+      
+    }}
+    decorators={[
+      () => ({ template: `<div style="width: 100%; height: 200px"><story /></div>` })
+    ]}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Carousel autoplay" />
+
+## Fade In/out
+
+<Canvas>
+  <Story
+    name="Carousel Fade-in/out"
+    args={{
+      list: slideList,
+      autoPlay: true,
+      speed: 700,
+      animation: `fade`,
+    }}
+    decorators={[
+      () => ({ template: `<div style="width: 100%; height: 200px"><story /></div>` })
+    ]}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Carousel Fade-in/out" />
+
+
+## Sliding 
+
+<Canvas>
+  <Story
+    name="Carousel sliding"
+    args={{
+      list: slideList,
+      autoPlay: true,
+      speed: 700,
+      animation: `normal`,
+    }}
+    decorators={[
+      () => ({ template: `<div style="width: 100%; height: 200px"><story /></div>` })
+    ]}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Carousel sliding" />
