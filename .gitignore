@@ -91,3 +91,4 @@ sw.*
 
 yarn.lock
 .nuxt-storybook/
+storybook-static/
