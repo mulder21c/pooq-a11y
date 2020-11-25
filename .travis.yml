@@ -4,7 +4,7 @@ node_js:
 - "lts/*"
 
 before_script:
-- yarn nuxt storybook build
+- yarn nuxt storybook build -s static
 
 stages:
 - Deploy
