@@ -1,7 +1,12 @@
 <template>
-  <div class="container">페이지 콘텐츠</div>
+  <MainPageTpl />
 </template>
 
 <script>
-export default {};
+import MainPageTpl from '@templates/MainPage';
+export default {
+  components: {
+    MainPageTpl,
+  },
+};
 </script>
