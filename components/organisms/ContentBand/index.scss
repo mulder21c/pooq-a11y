@@ -1,0 +1,50 @@
+.contents-band {
+  margin-top: 50px;
+  padding: 0 90px;
+
+  &__heading {
+    margin-bottom: 15px;
+    @include font($noto, 'xlarge', 'regular' );
+  }
+
+  &__carousel {
+    &--vod {
+      height: 410px;
+    }
+    &--live {
+      height: 210px;
+    }
+
+    &__set {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    &__item {
+      flex: 0 1 23%;
+      width: 23%;
+    }
+
+    &__btn {
+      background-color: rgba(#fefefe, 0.7);
+      &:hover,
+      &:focus {
+        background-color: #a553ff;
+      }
+
+      &--prev {
+        left: 0;
+        font-size: 100px;
+        filter: drop-shadow(1px 1px 2px rgba(#fff, 0.8)) drop-shadow(1px 1px 3px rgba(#000, 0.8));
+      }
+
+      &--next {
+        right: 0;
+        font-size: 100px;
+        filter: drop-shadow(-1px -1px 2px rgba(#fff, 0.8)) drop-shadow(-1px -1px 3px rgba(#000, 0.8));
+      }
+    }
+  }
+}

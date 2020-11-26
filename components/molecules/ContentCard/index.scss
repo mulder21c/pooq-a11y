@@ -1,0 +1,66 @@
+.card {
+  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-radius: 5px;
+  border: 1px solid getColor('grey');
+
+  &__info {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 10px;
+    background-color: getColor('grey', 'lighten');
+    
+    &__thumbs {
+       max-width: 100%;
+       width: 100%;
+    }
+
+    &__subject {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 5px 0;
+      @include font($noto, 'large');
+      @include font-weight('bold');
+
+      &__title {
+        flex: 7 1 auto;
+        width: 70%;
+        @include lineEllipsis(1);
+      }
+
+      &__episode {
+        flex: 3 1 auto;
+        width: 30%;
+        text-align: right;
+        @include lineEllipsis(1);
+      }
+    }
+
+    &__desc {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 5px 0;
+      @include font($noto, 'base');
+      @include font-weight('regular');
+
+      &__date {
+        flex: 3 1 auto;
+        width: 60%;
+        @include lineEllipsis(1);
+      }
+      &__broad {
+        flex: 2 1 auto;
+        width: 40%;
+        text-align: right;
+        @include lineEllipsis(1);
+      }
+    }
+  }
+}

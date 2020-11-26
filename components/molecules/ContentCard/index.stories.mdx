@@ -1,0 +1,116 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import ContentCard from './index.vue';
+import { action } from '@storybook/addon-actions';
+
+<Meta
+  title="Molecules/ContentCard"
+  component={ContentCard}
+  argTypes={{
+    contentId: {},
+    img: {
+      description: `이미지 주소`,
+    },
+    title: {
+      description: `컨텐츠 제목`,
+    },
+    broadcaster: {
+      description: `방송국 이름`,
+    },
+    date: {
+      description: `방영일 정보`,
+    },
+    episode: {
+      description: `회차 정보`,
+    },
+    context: {
+      description: `카드 타입`,
+      control: {
+        type: `select`,
+        options: [`vod`, `live`]
+      }
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {ContentCard},
+  template: `
+    <ContentCard
+      :content-id="contentId"
+      :img="img"
+      :title="title"
+      :broadcaster="broadcaster"
+      :date="date"
+      :episode="episode"
+      :context="context"
+    />
+  `,
+  methods: {
+    // log(event) {
+    //   action(`navigation item clicked`)(event.target.textContent);
+    // }
+  }
+});
+
+
+> Storybook 자체 이슈인지 nuxt module — `@nuxtjs/dayjs`, `@nuxtjs/datefns`, `@nuxtjs/moment` 모두 오류 발생 중  
+> storybook 질의 후 재시도 필요 
+
+## VOD type
+
+<Canvas>
+  <Story
+    name="VOD Type"
+    parameters={{
+      backgrounds: {
+        default: 'content',
+      },
+    }}
+    decorators={[
+      () => ({ template: `<div style="width: 240px;"><story /></div>` })
+    ]}
+    args={{
+      contentId: 1,
+      img: `/mock-image/vods/0a3104e23ceffb4822ada472f2d2b167_w312_h444_q75.jpg`,
+      title: `사랑의 콜센터`,
+      broadcaster: `TV 조선`,
+      date: `2020-12-11`,
+      episode: 12,
+      context: `vod`,
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="VOD Type" />
+
+
+
+## Live type
+
+<Canvas>
+  <Story
+    name="Live Type"
+    parameters={{
+      backgrounds: {
+        default: 'content',
+      },
+    }}
+    decorators={[
+      () => ({ template: `<div style="width: 240px;"><story /></div>` })
+    ]}
+    args={{
+      contentId: 101,
+      img: `/mock-image/lives/C2601_w720_h406_q75.jpg`,
+      title: `런닝맨 2부`,
+      broadcaster: `SBS`,
+      context: `live`,
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Live Type" />
