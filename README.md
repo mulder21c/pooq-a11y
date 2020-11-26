@@ -1,20 +1,5 @@
-# pooq-aria-sample
+# 2020 IAT (정보 접근성) 컨퍼런스 발표 예제 컴포넌트 별 구현 사례
 
-## Build Setup
+## Live Demo
 
-```bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+[Storybook](https://mulder21c-pooq.netlify.app)
