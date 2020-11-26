@@ -49,7 +49,6 @@ export default {
     '~/plugins/vue-fragment.js',
     '~/plugins/axios.js',
     '~/plugins/vue-fontawesome.js',
-    '~/plugins/vue-dayjs.js',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -66,6 +65,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
+    '@nuxtjs/dayjs',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)

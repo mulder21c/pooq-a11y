@@ -88,7 +88,7 @@ export default {
   computed: {
     formattedDate() {
       return this.context === 'vod'
-        ? this.$date(this.date).format(`YYYY년 MM월 DD일`)
+        ? this.$dayjs(this.date).format(`YYYY년 MM월 DD일`)
         : this.date;
     },
     isVodContext() {

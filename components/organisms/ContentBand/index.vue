@@ -3,7 +3,7 @@
     <Heading
       :id="`contents-band-${_uid}`"
       :rank="headingRank"
-      :text-content="headingTitle"
+      :text-content="headingContent"
       :class="$style[`contents-band__heading`]"
     />
     <client-only>
@@ -29,7 +29,9 @@
           :class="$style[`contents-band__carousel__set`]"
         >
           <ContentCard
-            v-for="{ id, title, img, broadcaster, date, episode } in itemSet"
+            v-for="(
+              { id, title, img, broadcaster, date, episode }, sidx
+            ) in itemSet"
             :key="`vod-band-set-${id}`"
             :content-id="id"
             :img="img"
@@ -39,6 +41,13 @@
             :episode="episode"
             :context="context"
             :class="$style[`contents-band__carousel__item`]"
+            :style="{
+              flex: `0 1 calc((100% - 2% * ${
+                numberPerPage - 1
+              })/${numberPerPage})`,
+              width: `${100 / numberPerPage}%`,
+              marginLeft: sidx > 0 ? `2%` : 0,
+            }"
           />
         </slider-item>
       </slider>
@@ -66,12 +75,17 @@ export default {
       required: false,
       default: () => [],
     },
+    numberPerPage: {
+      type: Number,
+      required: false,
+      default: 4,
+    },
     headingRank: {
       type: Number,
       required: false,
       default: 2,
     },
-    headingTitle: {
+    headingContent: {
       type: String,
       required: false,
       default: ``,
@@ -87,7 +101,11 @@ export default {
       const arr = [];
       for (
         let i = 0, item;
-        (item = slice(this.contentList, i * 4, ++i * 4));
+        (item = slice(
+          this.contentList,
+          i * this.numberPerPage,
+          ++i * this.numberPerPage,
+        ));
 
       ) {
         if (!item.length) return arr;

@@ -3,3 +3,13 @@
 ## Live Demo
 
 [Storybook](https://mulder21c-pooq.netlify.app)
+
+
+## issues
+
+### Storybook `@nuxtjs/dayjs` 오류 발생 중
+
+- `molecules/ContentCard`에 Canvas로 접근 가능, Docs 접근 시 오류 발생
+- `organisms/ContentBand/Vod Type`에 접근 시 오류 발생
+
+storybook 질의 필요
