@@ -10,7 +10,7 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "yarn lint:js",
     "jsontosass": "node convert-to-scss",
-    "iconfont": "node generate-iconfonts",
+    "iconfonts": "node generate-iconfonts",
     "storybook": "nuxt storybook -s ./static -p 6006",
     "build-storybook": "yarn jsontosass && yarn iconfonts && yarn nuxt storybook build -s ./static"
   },

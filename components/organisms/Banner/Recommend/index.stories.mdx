@@ -1,0 +1,70 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import RecommendBanner from './index.vue';
+
+<Meta
+  title="Oraganisms/Banner"
+  component={RecommendBanner}
+  argTypes={{
+    bannerItems: {
+      description: `슬라이드 아이템 배열 `,
+      control: {
+        type: `object`,
+      }
+    },
+    headingRank: {
+      description: '추천 배너 영역 헤딩 레벨, `1`~`6`',
+    },
+    headingContent: {
+      description: '추천 배너 영역 헤딩 콘텐츠, plain text·html string 모두 허용'
+    },
+    hideHeading: {
+      description: '추천 배너 영역 헤딩 가시적 노출 여부'
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {RecommendBanner},
+  template: `
+    <RecommendBanner
+      :banner-items="bannerItems"
+      :heading-rank="headingRank"
+      :heading-content="headingContent"
+      :hide-heading="hideHeading"
+    />
+  `,
+});
+
+<Canvas>
+  <Story
+    name="RecommendBanner"
+    decorators={[
+      () => ({ template: `<div style="width: 1200px; height: 477px"><story /></div>` })
+    ]}
+    args = {{
+      bannerItems: [
+        {
+          "img": "/mock-image/banner/20180306_dollshouse_1200.jpg",
+          "title": "인형의 집","description":"KBS 2TV 저녁 일일드라마 매주 월~금 저녁 7시 50분",
+          "id":2435
+        },
+        {
+          "img": "/mock-image/banner/20180202_whitetower_1200.jpg",
+          "title": "하얀거탑","description":"UHD로 다시 만나보세요!!",
+          "id":2439
+        },
+        {
+          "img": "/mock-image/banner/20180306_onesleep_1200.jpg",
+          "title": "상민 종민의 하룻밤만 재워줘","description":"KBS 2TV 화요일밤 11시",
+          "id":2639
+        },
+      ],
+      headingRank: 2,
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="RecommendBanner" />

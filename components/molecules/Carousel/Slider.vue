@@ -3,7 +3,6 @@
     ref="carousel"
     role="region"
     aria-roledescription="carousel"
-    :aria-describeby="`carosel--guide-${_uid}`"
     :class="$style[`carousel__wrapper`]"
     @focusin="handleAutoPlayPauseByKey"
     @focusout="handleAutoPlayResumeByKey"
