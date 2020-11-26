@@ -13,22 +13,44 @@
         />
       </template>
     </recommend-banner>
-    <div>인기 방송 VOD 캐러셀 영역 - paging, non-indicator</div>
-    <div>인기 실시간 TV 캐러셀 영역 - paging, non-indicator</div>
+    <ContentBand
+      :heading-rank="2"
+      :heading-content="`인기 방송 VOD`"
+      :content-list="popVods"
+      :context="`vod`"
+    />
+    <ContentBand
+      :heading-rank="2"
+      :heading-content="`인기 실시간 TV`"
+      :content-list="popLives"
+      :context="`live`"
+    />
   </fragment>
 </template>
 
 <script>
 import RecommendBanner from '@organisms/Banner/Recommend';
+import ContentBand from '@organisms/ContentBand';
 import Heading from '@atoms/Heading';
 
 export default {
   components: {
     RecommendBanner,
+    ContentBand,
     Heading,
   },
   props: {
     recommendBannerList: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+    popVods: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+    popLives: {
       type: Array,
       required: false,
       default: () => [],

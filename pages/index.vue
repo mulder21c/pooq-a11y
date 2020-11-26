@@ -1,5 +1,9 @@
 <template>
-  <MainPageTpl :recommend-banner-list="recommendBanner" />
+  <MainPageTpl
+    :recommend-banner-list="recommendBanner"
+    :pop-vods="popVods"
+    :pop-lives="popLives"
+  />
 </template>
 
 <script>
@@ -10,12 +14,16 @@ export default {
     MainPageTpl,
   },
   async asyncData({ app }) {
-    const [recommendBanner] = await Promise.all([
+    const [recommendBanner, popVods, popLives] = await Promise.all([
       app.$api.banner.getRecommendBanner(),
+      app.$api.home.getPopVods(),
+      app.$api.home.getPopLives(),
     ]);
 
     return {
       recommendBanner,
+      popVods,
+      popLives,
     };
   },
 };
