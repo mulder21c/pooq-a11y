@@ -14,13 +14,17 @@
     top: 50%;
     z-index: 20;
     transform: translateY(-50%);
-    transition: opacity 0.3s; 
+    transition: all 0.3s; 
     opacity: 0;
 
     #{$host}__wrapper:focus-within &,
     #{$host}__wrapper:hover & {
       opacity: 0.85;
-      transform: translateY(-50%) scale(1.1);
+    }
+
+    &:hover,
+    &:focus {
+      transform: translateY(-50%) scale(1.25);
     }
 
     &--prev {
