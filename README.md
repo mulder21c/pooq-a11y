@@ -2,8 +2,9 @@
 
 ## Live Demo
 
-[Storybook](https://mulder21c-pooq.netlify.app)
+[Live Sample](https://pooq-a11y.netlify.app)
 
+[Storybook](https://mulder21c-pooq.netlify.app)
 
 ## issues
 
