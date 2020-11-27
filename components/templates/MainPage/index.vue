@@ -14,12 +14,14 @@
       </template>
     </recommend-banner>
     <ContentBand
+      v-if="popVods.length"
       :heading-rank="2"
       :heading-content="`인기 방송 VOD`"
       :content-list="popVods"
       :context="`vod`"
     />
     <ContentBand
+      v-if="popLives.length"
       :heading-rank="2"
       :heading-content="`인기 실시간 TV`"
       :content-list="popLives"
