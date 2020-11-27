@@ -1,0 +1,51 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Notice from './index.vue';
+
+<Meta
+  title="Oraganisms/Footer Notice"
+  component={Notice}
+  argTypes={{
+    headingRank: {
+      description: `공지사항 섹션 헤딩 레벨`,
+      control: {
+        type: `select`,
+        options: [1, 2, 3, 4, 5, 6],
+      },
+    },
+    footNoticeList: {
+      control: {
+        type: `object`
+      }
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {Notice},
+  template: `
+    <Notice
+      :heading-rank="headingRank" 
+      :foot-notice-list="footNoticeList" 
+    />
+  `,
+  methods: {}
+});
+
+## Footer Latest Notice
+
+<Canvas>
+  <Story
+    name="Footer Notice"
+    args={{
+      headingRank: 2,
+      footNoticeList: [
+        {id: 1234, content: `공지 내용 예시 텍스트`}
+      ]
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Footer Notice" />

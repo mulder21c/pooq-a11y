@@ -35,6 +35,7 @@ const state = () => ({
       to: `#`,
     },
   ],
+  footNoticeList: [],
   footNavigations: [
     {
       content: `회사 소개`,

@@ -1,0 +1,78 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import AppFooter from './index.vue';
+const { colorSet } = require('@/css-variables.js');
+
+<Meta
+  title="Oraganisms/AppFooter"
+  component={AppFooter}
+  argTypes={{
+    footNoticeList: {
+      control: {
+        type: `object`
+      }
+    },
+    footNavigations: {
+      description: '푸터 내비게이션 정보 객체',
+      control: {
+        type: `object`
+      },
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {AppFooter},
+  template: `
+    <AppFooter 
+      :foot-notice-list="footNoticeList"
+      :navigations="footNavigations" 
+    />
+  `,
+  methods: {}
+});
+
+## Application Footer
+
+<Canvas>
+  <Story
+    name="AppFooter"
+    decorators={[
+      () => ({ template: `<div style="width: 1200px; background-color: ${colorSet.grey.light};"><story /></div>` })
+    ]}
+    args={{
+      footNoticeList: [
+        {id: 1234, content: `공지 내용 예시 텍스트`}
+      ],
+      footNavigations: [
+        {
+          "content": "회사 소개",
+          "to": "#"
+        },
+        {
+          "content": "서비스 소개",
+          "to": "#"
+        },
+        {
+          "content": "이용 약관",
+          "to": "#"
+        },
+        {
+          "content": "개인정보취급방침",
+          "to": "#"
+        },
+        {
+          "content": "고객센터",
+          "to": "#"
+        }
+      ],
+    }}
+    decorators={[
+      () => ({ template: `<div style="width: 1200px"><story /></div>` })
+    ]}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="AppFooter" />

@@ -1,0 +1,16 @@
+.footer {
+  box-sizing: border-box;
+  padding: 30px 90px;
+
+  &__nav {
+    &__item {
+      margin-right: 30px;
+    }
+  }
+
+  &__company-info,
+  &__copyright {
+    margin: 15px 0;
+    @include font-size('small');
+  }
+}

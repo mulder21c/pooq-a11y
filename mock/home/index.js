@@ -154,4 +154,13 @@ const popLives = {
   ],
 };
 
-export { popVods, popLives };
+const lastestNotice = {
+  list: [
+    {
+      id: 1231,
+      content: '영화 <커뮤터> 구매 이벤트 당첨자 발표',
+    },
+  ],
+};
+
+export { popVods, popLives, lastestNotice };

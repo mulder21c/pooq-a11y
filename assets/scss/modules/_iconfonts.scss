@@ -23,6 +23,7 @@ $icon-fonts: map-merge($icon-fonts, (
   align-items: center;
   @if $position == 'prefix' {
     &::before {
+      margin-right: .25em;
       font-family: nth($icon, 1) !important;
       font-style: normal;
       font-weight: normal !important;
@@ -32,6 +33,7 @@ $icon-fonts: map-merge($icon-fonts, (
   }
   @else if $position == 'suffix' {
     &::after {
+      margin-left: .25em;
       font-family: nth($icon, 1) !important;
       font-style: normal;
       font-weight: normal !important;

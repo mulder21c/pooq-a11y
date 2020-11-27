@@ -1,0 +1,81 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import FooterInfo from './index.vue';
+const { colorSet } = require('@/css-variables.js');
+
+<Meta
+  title="Oraganisms/Footer Information"
+  component={FooterInfo}
+  argTypes={{
+    navigations: {
+      description: '푸터 내비게이션 정보 객체',
+      control: {
+        type: `object`
+      }
+    },
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {FooterInfo},
+  template: `
+    <FooterInfo
+      :navigations="navigations" 
+    />
+  `,
+});
+
+## Footer Information without foot navigation
+
+<Canvas>
+  <Story
+    name="Footer Information"
+    decorators={[
+      () => ({ template: `<div style="width: 1200px; background-color: ${colorSet.grey.light};"><story /></div>` })
+    ]}
+    args={{
+      navigations: []
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+## Footer Information with foot navigation
+
+<Canvas>
+  <Story
+    name="Footer Information with naviagtion"
+    decorators={[
+      () => ({ template: `<div style="width: 1200px; background-color: ${colorSet.grey.light};"><story /></div>` })
+    ]}
+    args={{
+      navigations: [
+        {
+          "content": "회사 소개",
+          "to": "#"
+        },
+        {
+          "content": "서비스 소개",
+          "to": "#"
+        },
+        {
+          "content": "이용 약관",
+          "to": "#"
+        },
+        {
+          "content": "개인정보취급방침",
+          "to": "#"
+        },
+        {
+          "content": "고객센터",
+          "to": "#"
+        }
+      ],
+    }}
+  >
+    { Template.bind({}) }
+  </Story>
+</Canvas>
+
+<ArgsTable story="Footer Information with navitation" />
